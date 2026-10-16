@@ -1,0 +1,88 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "sagaraher3@gmail.com",
+      "password": "8830880266",
+      "name": "Sagar Aher",
+      "role": "admin"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "1",
+      "name": "Rahul Sharma",
+      "title": "Software Engineer",
+      "company": "Infosys",
+      "email": "rahul.sharma@example.com",
+      "phone": "+91 9876543210",
+      "photo": "https://d26e3f10zvrezp.cloudfront.net/Gallery/d8661fb5-be86-4b47-b640-0562b0a814be-400x400.webp",
+      "isFavorite": false
+    },
+    {
+      "id": "3",
+      "name": "Amit Verma",
+      "title": "Backend Developer",
+      "company": "Microsoft",
+      "email": "amit.verma@example.com",
+      "phone": "+91 9876543212",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZJoWsJ18rQvQJLcyG8I49LCi-8DNk5bsOWuxzwKCgNBW3HtyWwAMbCn0&s=10",
+      "isFavorite": false
+    },
+    {
+      "id": "4",
+      "name": "Sneha Kulkarni",
+      "title": "Product Designer",
+      "company": "Amazon",
+      "email": "sneha.kulkarni@example.com",
+      "phone": "+91 9876543213",
+      "photo": "https://t3.ftcdn.net/jpg/10/70/34/64/360_F_1070346478_JkP2vVGPnLhhwp2wdY0VSlJNB9eEtuC5.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Karan Mehta",
+      "title": "Full Stack Developer",
+      "company": "Wipro",
+      "email": "karan.mehta@example.com",
+      "phone": "+91 9876543214",
+      "photo": "https://img.magnific.com/premium-photo/cartoon-character-with-face-tie-that-says-hair_783884-283039.jpg?semt=ais_hybrid&w=740&q=80"
+    },
+    {
+      "id": "6",
+      "name": "Ananya Desai",
+      "title": "Data Analyst",
+      "company": "Accenture",
+      "email": "ananya.desai@example.com",
+      "phone": "+91 9876543215",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1fu5pX9l232nATJ9xc7fozceIIZKLDmoGCDFijNX-KhEWYwF5EyGT6A8&s=10",
+      "isFavorite": true
+    },
+    {
+      "name": "Sagar Aher",
+      "title": "Developer",
+      "company": "Google",
+      "email": "sagaraherprivan3@gmail.com",
+      "phone": "8830880266",
+      "photo": "https://img.magnific.com/premium-photo/3d-cartoon-avatar-man-minimal-3d-character-avatar-profile_652053-2078.jpg?semt=ais_hybrid&w=740&q=80",
+      "id": "gsozsgKd92s"
+    },
+    {
+      "name": "Siddharth M",
+      "title": "SDE",
+      "company": "Amazon",
+      "email": "siddharthM1@gmail.com",
+      "phone": "7066113852",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMK4HYyUmtZ155wR8C5pqUkhVvgDPFDgmbBhb_7joLQrqcbEIs-_AhaxPh&s=10",
+      "id": "VsWb7E__cqU"
+    },
+    {
+      "name": "Nayan Kanojiya",
+      "title": "Data Analyst",
+      "company": "Phonepay",
+      "email": "nayank9@gmail.com",
+      "phone": "9852648935",
+      "photo": "https://thumbs.dreamstime.com/b/d-icon-user-cartoon-man-glasses-crossed-smiling-beard-arms-transparent-background-businessman-confidently-standing-395355239.jpg",
+      "id": "YOOMcavlYoI"
+    }
+  ]
+}
