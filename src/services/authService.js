@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const USERS_API_URL = 'http://localhost:5001/users';
+const USERS_API_URL = 'https://contact-managment-app-wokk.onrender.com';
 
 export async function mockLogin({ email, password }) {
   try {

@@ -22,7 +22,6 @@ dist-ssr
 *.sln
 *.sw?
 
-backend/
 node_modules/
 dist/
 .local
