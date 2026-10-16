@@ -1,26 +1,32 @@
-import axios from 'axios';
-import { USERS_API_URL } from "./api";
 
-const USERS_API_URL = 'https://contact-managment-app-wokk.onrender.com/users';
+import axios from 'axios';
+
+const USERS_API_URL =
+  'https://contact-managment-app-wokk.onrender.com/users';
 
 export async function mockLogin({ email, password }) {
   try {
     const response = await axios.get(USERS_API_URL);
     const users = response.data;
+
     const foundUser = users.find(
-      (item) => item.email.toLowerCase() === email.toLowerCase() && item.password === password
+      (item) =>
+        item.email.toLowerCase() === email.toLowerCase() &&
+        item.password === password
     );
+
     if (!foundUser) {
       throw new Error('Invalid email or password.');
     }
+
     return {
       user: {
         id: foundUser.id,
         name: foundUser.name,
         email: foundUser.email,
-        role: foundUser.role
+        role: foundUser.role,
       },
-      accessToken: 'mock-jwt-access-token-' + foundUser.id
+      accessToken: `mock-jwt-access-token-${foundUser.id}`,
     };
   } catch (error) {
     if (error.response) {
@@ -29,35 +35,51 @@ export async function mockLogin({ email, password }) {
     throw error;
   }
 }
+
 export async function mockRegister({ name, email, password }) {
   try {
     const response = await axios.get(USERS_API_URL);
     const users = response.data;
+
     const existingUser = users.find(
-      (item) => item.email.toLowerCase() === email.toLowerCase()
+      (item) =>
+        item.email.toLowerCase() === email.toLowerCase()
     );
+
     if (existingUser) {
-      throw new Error('This email is already registered. Please login instead.');
+      throw new Error(
+        'This email is already registered. Please login instead.'
+      );
     }
+
     const newUser = {
       name,
       email,
       password,
-      role: 'user'
+      role: 'user',
     };
-    const postResponse = await axios.post(USERS_API_URL, newUser);
+
+    const postResponse = await axios.post(
+      USERS_API_URL,
+      newUser
+    );
+
     const createdUser = postResponse.data;
+
     return {
       user: {
         id: createdUser.id,
         name: createdUser.name,
         email: createdUser.email,
-        role: createdUser.role
+        role: createdUser.role,
       },
-      accessToken: 'mock-jwt-access-token-' + createdUser.id
+      accessToken: `mock-jwt-access-token-${createdUser.id}`,
     };
   } catch (error) {
-    if (error.message.includes('already registered')) {
+    if (
+      error.message.includes('already registered') ||
+      error.message.includes('Unable to connect')
+    ) {
       throw error;
     }
     throw new Error('Registration failed. Please try again.');
