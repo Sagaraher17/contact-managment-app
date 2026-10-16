@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+const BASE_URL = 'https://contact-managment-app-wokk.onrender.com';
+export const USERS_API_URL = `${BASE_URL}/users`;
+export const CONTACTS_API_URL = `${BASE_URL}/contacts`;
+
 const api = axios.create({
-  baseURL: 'https://contact-managment-app-wokk.onrender.com',
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
