@@ -13,11 +13,17 @@ import Register from './pages/Register';
 
 function Layout() {
     const { user, logout } = useAuth();
-    const [theme, setTheme] = useState('light');
+    
+    // Persist theme using localStorage so it doesn't reset on navigation
+    const [theme, setTheme] = useState(() => {
+        return localStorage.getItem('app_theme') || 'light';
+    });
+    
     const navigate = useNavigate();
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('app_theme', theme);
     }, [theme]);
 
     const toggleTheme = () => {
@@ -69,6 +75,7 @@ function Layout() {
         </div>
     );
 }
+
 function DashboardContent() {
     const [contacts, setContacts] = useState([]);
     const [visibleCount, setVisibleCount] = useState(6);
@@ -78,9 +85,11 @@ function DashboardContent() {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleteId, setDeleteId] = useState(null);
     const navigate = useNavigate();
+
     useEffect(() => {
         fetchContacts();
     }, []);
+
     const fetchContacts = async () => {
         setLoading(true);
         try {
@@ -92,6 +101,7 @@ function DashboardContent() {
             setLoading(false);
         }
     };
+
     const handleToggleFavorite = async (contact) => {
         try {
             const updatedContact = { ...contact, isFavorite: !contact.isFavorite };
@@ -101,6 +111,7 @@ function DashboardContent() {
             console.error("Error updating favorite status", error);
         }
     };
+
     const handleDeleteConfirm = async () => {
         try {
             await api.delete(`/contacts/${deleteId}`);
@@ -111,14 +122,17 @@ function DashboardContent() {
             console.error("Error deleting contact", error);
         }
     };
+
     const filteredContacts = contacts.filter(contact => {
         const matchesSearch = contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                               contact.email.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesFavorite = showFavoritesOnly ? contact.isFavorite : true;
         return matchesSearch && matchesFavorite;
     });
+
     const displayedContacts = filteredContacts.slice(0, visibleCount);
     const hasMore = visibleCount < filteredContacts.length;
+
     const handleLoadMore = () => {
         setLoading(true);
         setTimeout(() => {
@@ -126,6 +140,7 @@ function DashboardContent() {
             setLoading(false);
         }, 600);
     };
+
     return (
         <div>
             <div className="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
@@ -206,6 +221,7 @@ function DashboardContent() {
         </div>
     );
 }
+
 function ContactFormPage() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -218,11 +234,13 @@ function ContactFormPage() {
         photo: '',
         isFavorite: false
     });
+
     useEffect(() => {
         if (id) {
             api.get(`/contacts/${id}`).then(res => setFormData(res.data)).catch(err => console.error(err));
         }
     }, [id]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -236,6 +254,7 @@ function ContactFormPage() {
             console.error("Error saving contact", error);
         }
     };
+
     return (
         <div className="card card-custom shadow p-4 mx-auto" style={{ maxWidth: '600px' }}>
             <h3 className="fw-bold mb-4">{id ? '✏️ Edit Contact' : '➕ Add New Contact'}</h3>
@@ -272,15 +291,18 @@ function ContactFormPage() {
         </div>
     );
 }
+
 function ContactViewPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const [contact, setContact] = useState(null);
+
     useEffect(() => {
         api.get(`/contacts/${id}`).then(res => setContact(res.data)).catch(err => console.error(err));
     }, [id]);
 
     if (!contact) return <div className="text-center py-5">Loading contact details...</div>;
+
     return (
         <div className="card card-custom shadow p-4 mx-auto text-center" style={{ maxWidth: '500px' }}>
             <img src={contact.photo} alt={contact.name} className="avatar-img mx-auto mb-3 shadow-sm" />
@@ -300,6 +322,7 @@ function ContactViewPage() {
         </div>
     );
 }
+
 export default function App() {
     return (
         <AuthProvider>
